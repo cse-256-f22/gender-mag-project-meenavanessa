@@ -1,4 +1,5 @@
 //---- Define your dialogs  and panels here ----
+//testing
 var thing = define_new_effective_permissions("permissionspanel", true, null)
 
 var userthing = define_new_user_select_field("adduser", "Select User", function(selected_user){$('#permissionspanel').attr('username', selected_user)})
