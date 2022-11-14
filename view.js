@@ -8,8 +8,8 @@ var userthing = define_new_user_select_field("adduser", "Select User", function(
 var infodialog = define_new_dialog(infodialog, 'Information permissions', {})
 // ---- Display file structure ----
 
-$('#sidepanel').append(thing);
-$('#sidepanel').append(userthing);
+// $('#sidepanel').append(thing);
+// $('#sidepanel').append(userthing);
 $('#permissionspanel').attr('filepath', '/C')
 $('.perm_info').click(function(){
     infodialog.dialog('open')
@@ -22,14 +22,14 @@ $('.perm_info').click(function(){
     infodialog.text(exp_string)
 })
 
-usertips = $('<br><div><h2>User Guide For Navigating Site</></>')
+usertips = $('<br><div style="margin-left: 2vw; margin-right:2vw;"><h2>User Guide For Navigating Site</></>')
 usertips.append($('<div>Read, write, and modify permissions can be found or editted by clicking the unlock button next to each file or folder.</>'))
 usertips.append($('<div>To edit any other permissions for a user, such as delete or create files, click the following steps: Permissions button for the file whose permissions you are editting --> Advanced Permissions--> Edit Advanced Permissions --> Select User.</>'))
 usertips.append($('<div>A grey checked box indicates an inherited permission from a parent file.</>'))
 
 $('#wrapper').append(usertips)
 
-filehierarchy = $('<br><div><h2>Order of Permission Precedance</></>')
+filehierarchy = $('<br><div style="margin-left: 2vw; margin-right:2vw;"><h2>Order of Permission Precedance</></>')
 filehierarchy.append($('<div>1. Direct permission to file or to a group the user is a part of</>'))
 filehierarchy.append($('<div>2. Permission of parent folder, if inheritance is turned on, </>'))
 filehierarchy.append($('<div>3. Permission of grandparent folder, etc.</>'))
