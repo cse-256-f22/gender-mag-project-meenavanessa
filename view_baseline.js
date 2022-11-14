@@ -7,21 +7,21 @@ show_starter_dialogs = false // set this to "false" to disable the survey and 3-
 // Make permissions dialog:
 perm_dialog = define_new_dialog('permdialog', title='Permissions', options = {
     // The following are standard jquery-ui options. See https://jqueryui.com/dialog/
-    height: 500,
+    height: 540,
     width: 400,
     buttons: {
-        OK:{
-            text: "OK",
-            id: "perm-dialog-ok-button",
-            click: function() {
-                $( this ).dialog( "close" );
-            }
-        },
         Advanced: {
-            text: "Advanced",
+            text: "Advanced Premissions",
             id: "perm-dialog-advanced-button",
             click: function() {
                 open_advanced_dialog(perm_dialog.attr('filepath'))
+            }
+        },
+        OK:{
+            text: "Confirm Changes",
+            id: "perm-dialog-ok-button",
+            click: function() {
+                $( this ).dialog( "close" );
             }
         }
     }
@@ -33,7 +33,7 @@ obj_name_div = $('<div id="permdialog_objname" class="section">Object Name: <spa
 
 //Make the div with the explanation about special permissions/advanced settings:
 advanced_expl_div = $('<div id="permdialog_advanced_explantion_text">For special permissions or advanced settings, click Advanced.</div>')
-
+task2_advanced_expl_div = $('<br> <div id="permdialog_advanced_explantion_text_task2">All employees should be able to read, write, and modify this file, unless specified otherwise.</div>')
 // Make the (grouped) permission checkboxes table:
 grouped_permissions = define_grouped_permission_checkboxes('permdialog_grouped_permissions')
 grouped_permissions.addClass('section') // add a 'section' class to the grouped_permissions element. This class adds a bit of spacing between this element and the next.
@@ -67,7 +67,7 @@ perm_add_user_select.find('span').hide()// Cheating a bit - just show the button
 cant_remove_dialog = define_new_dialog('cant_remove_inherited_dialog', 'Security', {
     buttons: {
         OK: {
-            text: "OK",
+            text: "Confirm Changes",
             id: "cant-remove-ok-button",
             click: function() {
                 $( this ).dialog( "close" );
@@ -151,6 +151,15 @@ perm_dialog.append(perm_add_user_select)
 perm_add_user_select.append(perm_remove_user_button) // Cheating a bit again - add the remove button the the 'add user select' div, just so it shows up on the same line.
 perm_dialog.append(grouped_permissions)
 perm_dialog.append(advanced_expl_div)
+//perm_dialog.append(task2_advanced_expl_div)
+//let fp = document.getElementById(permdialog).attr('filepath')
+//console.log(current_filepath)
+// console.log(document.getElementById(permdialog).attr('filepath'))
+// if (document.getElementById('permdialog').attr('filepath') == '/C/presentation_documents') {
+//    console.log("yes")
+   //perm_dialog.append(task2_advanced_expl_div)
+//}
+
 
 // --- Additional logic for reloading contents when needed: ---
 //Define an observer which will propagate perm_dialog's filepath attribute to all the relevant elements, whenever it changes:
@@ -324,7 +333,7 @@ let adv_contents = $(`#advdialog`).dialog({
     appendTo: "#html-loc",
     buttons: {
         OK: {
-            text: "OK",
+            text: "Confirm Changes",
             id: "advanced-dialog-ok-button",
             click: function() {
                 $( this ).dialog( "close" );
@@ -485,7 +494,7 @@ let user_select_contents = $("#user_select_dialog").dialog({
             },
         },
         OK: {
-            text: "OK",
+            text: "Confirm Changes",
             id: "user-select-ok-button",
             click: function() {
                 // populate field with user name (assume these are stored in attributes)
@@ -510,7 +519,7 @@ let perm_entry_dialog = $('#permentry').dialog({
     position: { my: "top", at: "top", of: $('#html-loc') },
     buttons: {
         OK: {
-            text: "OK",
+            text: "Confirm Changes",
             id: "permission-entry-ok-button",
             click: function() {
                 open_advanced_dialog($('#advdialog').attr('filepath') )// redo advanced dialog (recalc permissions)
@@ -624,7 +633,7 @@ You will still get paid if you don't finish the task, but you have to try.
     },
     buttons:{
         OK: {
-            text: "OK",
+            text: "Confirm Changes",
             id: "start-dialog-ok-button",
             click: function() {
                 $( this ).dialog( "close" );

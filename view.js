@@ -1,11 +1,13 @@
 //---- Define your dialogs  and panels here ----
 //testing
+
 var thing = define_new_effective_permissions("permissionspanel", true, null)
 
 var userthing = define_new_user_select_field("adduser", "Select User", function(selected_user){$('#permissionspanel').attr('username', selected_user)})
 
 var infodialog = define_new_dialog(infodialog, 'Information permissions', {})
 // ---- Display file structure ----
+
 $('#sidepanel').append(thing);
 $('#sidepanel').append(userthing);
 $('#permissionspanel').attr('filepath', '/C')
@@ -19,6 +21,22 @@ $('.perm_info').click(function(){
     let exp_string = get_explanation_text(explanation)
     infodialog.text(exp_string)
 })
+
+usertips = $('<br><div><h2>User Guide For Navigating Site</></>')
+usertips.append($('<div>Read, write, and modify permissions can be found or editted by clicking the unlock button next to each file or folder.</>'))
+usertips.append($('<div>To edit any other permissions for a user, such as delete or create files, click the following steps: Permissions button for the file whose permissions you are editting --> Advanced Permissions--> Edit Advanced Permissions --> Select User.</>'))
+usertips.append($('<div>A grey checked box indicates an inherited permission from a parent file.</>'))
+
+$('#wrapper').append(usertips)
+
+filehierarchy = $('<br><div><h2>Order of Permission Precedance</></>')
+filehierarchy.append($('<div>1. Direct permission to file or to a group the user is a part of</>'))
+filehierarchy.append($('<div>2. Permission of parent folder, if inheritance is turned on, </>'))
+filehierarchy.append($('<div>3. Permission of grandparent folder, etc.</>'))
+filehierarchy.append($('<div>4. If the permission is not set directly, set in any ancestors or inheritance is off, it will default to deny</>'))
+
+$('#wrapper').append(filehierarchy)
+
 // (recursively) makes and returns an html element (wrapped in a jquery object) for a given file object
 function make_file_element(file_obj) {
     let file_hash = get_full_path(file_obj)
@@ -28,7 +46,7 @@ function make_file_element(file_obj) {
             <h3 id="${file_hash}_header">
                 <span class="oi oi-folder" id="${file_hash}_icon"/> ${file_obj.filename} 
                 <button class="ui-button ui-widget ui-corner-all permbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
-                    <span class="oi oi-lock-unlocked" id="${file_hash}_permicon"/> 
+                    Permissions <span class="oi oi-lock-unlocked" id="${file_hash}_permicon"/>
                 </button>
             </h3>
         </div>`)
@@ -48,7 +66,7 @@ function make_file_element(file_obj) {
         return $(`<div class='file'  id="${file_hash}_div">
             <span class="oi oi-file" id="${file_hash}_icon"/> ${file_obj.filename}
             <button class="ui-button ui-widget ui-corner-all permbutton" path="${file_hash}" id="${file_hash}_permbutton"> 
-                <span class="oi oi-lock-unlocked" id="${file_hash}_permicon"/> 
+                Permissions <span class="oi oi-lock-unlocked" id="${file_hash}_permicon"/> 
             </button>
         </div>`)
     }
@@ -75,7 +93,11 @@ $('.permbutton').click( function( e ) {
     // Set the path and open dialog:
     let path = e.currentTarget.getAttribute('path');
     perm_dialog.attr('filepath', path)
+    if (path == '/C/presentation_documents') {
+        perm_dialog.append(task2_advanced_expl_div)
+    }
     perm_dialog.dialog('open')
+    
     //open_permissions_dialog(path)
 
     // Deal with the fact that folders try to collapse/expand when you click on their permissions button:

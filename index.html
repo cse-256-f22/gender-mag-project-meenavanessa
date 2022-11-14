@@ -26,6 +26,7 @@
     <div id="inner-body">
 
         <div id="mturk-top-banner-drop-down-content">
+            <div id="close_tab"> </div>
             <p id="scenario_context">
                 <!-- The user <code>employee3</code> has recently been fired.
                 Please remove this user entirely from the permission settings for <code>important_file.txt</code>. -->
@@ -83,6 +84,8 @@
             </span>
         </div>
         <div id="wrapper">
+            <h1>File Permissions Control Site </h1>
+            <br>
             <div data-app="gender-mag" data-mode="tracker" id="html-loc" data-tag="">
                 <!-- div where file and folder structure will be generated:-->
                 <div id="filestructure"></div>
@@ -94,7 +97,7 @@
                     <span id="perm_entry_name_text">Name: </span>
                     <span id="perm_entry_username" class="ui-widget-content section"
                         style="width:200px;display:inline-block;"></span>
-                    <button id="perm_entry_change_user" class="ui-button ui-widget ui-corner-all">Change...</button>
+                    <button id="perm_entry_change_user" class="ui-button ui-widget ui-corner-all">Select User</button>
                     <table id="perm_entry_table" class="ui-widget-content section">
                         <tr id="perm_entry_header">
                             <th id="perm_entry_header_p" width="99%">Permissions</th>
@@ -128,7 +131,7 @@
                                     </tr>
                                 </table>
                             </div>
-                            <button id="adv_perm_edit" class="ui-button ui-widget ui-corner-all">Edit...</button>
+                            <button id="adv_perm_edit" class="ui-button ui-widget ui-corner-all">Edit Advanced Permissions</button>
                             <div id="adv_perm_inheritance_div">
                                 <input type="checkbox" id="adv_perm_inheritance" name="inherit">
                                 <label for="adv_perm_inheritance" id="adv_perm_inheritance_label">Include inheritable
