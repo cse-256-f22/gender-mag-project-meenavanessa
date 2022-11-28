@@ -10,6 +10,7 @@ var infodialog = define_new_dialog(infodialog, 'Information permissions', {})
 
 // $('#sidepanel').append(thing);
 // $('#sidepanel').append(userthing);
+
 $('#permissionspanel').attr('filepath', '/C')
 $('.perm_info').click(function(){
     infodialog.dialog('open')
@@ -22,12 +23,15 @@ $('.perm_info').click(function(){
     infodialog.text(exp_string)
 })
 
-usertips = $('<br><div style="margin-left: 2vw; margin-right:2vw;"><h2>User Guide For Navigating Site</></>')
-usertips.append($('<div>Read, write, and modify permissions can be found or editted by clicking the unlock button next to each file or folder.</>'))
-usertips.append($('<div>To edit any other permissions for a user, such as delete or create files, click the following steps: Permissions button for the file whose permissions you are editting --> Advanced Permissions--> Edit Advanced Permissions --> Select User.</>'))
+let usertips = document.createElement('li')
+usertips.textContent = '<br><div style="margin-left: 2vw; margin-right:2vw;"><h2>User Guide For Navigating Site</></>'
+usertips.textContent = '<div>Read, write, and modify permissions can be found or editted by clicking the unlock button next to each file or folder.</>'
+usertips = '<div>To edit any other permissions for a user, such as delete or create files, click the following steps: Permissions button for the file whose permissions you are editting --> Advanced Permissions--> Edit Advanced Permissions --> Select User.</>'
 usertips.append($('<div>A grey checked box indicates an inherited permission from a parent file.</>'))
 
-$('#wrapper').append(usertips)
+let wrapper = document.getElementById('wrapper')
+//$('#wrapper').append(usertips)
+wrapper.insertBefore(usertips, wrapper.firstElementChild)
 
 filehierarchy = $('<br><div style="margin-left: 2vw; margin-right:2vw;"><h2>Order of Permission Precedance</></>')
 filehierarchy.append($('<div>1. Direct permission to file or to a group the user is a part of</>'))
@@ -35,7 +39,8 @@ filehierarchy.append($('<div>2. Permission of parent folder, if inheritance is t
 filehierarchy.append($('<div>3. Permission of grandparent folder, etc.</>'))
 filehierarchy.append($('<div>4. If the permission is not set directly, set in any ancestors or inheritance is off, it will default to deny</>'))
 
-$('#wrapper').append(filehierarchy)
+//$('#wrapper').append(filehierarchy)
+//wrapper.insertBefore(filehierarchy, wrapper.firstElementChild)
 
 // (recursively) makes and returns an html element (wrapped in a jquery object) for a given file object
 function make_file_element(file_obj) {
