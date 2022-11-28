@@ -86,23 +86,24 @@
         <div id="wrapper">
             <h1>File Permissions Control Site </h1>
             <br>
-            <div id="flexcontainer" style="display:flex; flex-direction: row;">
-                <ul style="font-size: 20px;"><h2>Instructions:</h2>
-                    <li style="font-size: 15px;">Read, write, and modify permissions can be found or editted by clicking the unlock button next to each file or folder.</li>
-                    <li style="font-size: 15px;">To edit any other permissions for a user, such as delete or create files, click the following steps: Permissions button for the file whose permissions you are editting --> Advanced Permissions--> Edit Advanced Permissions --> Select User.</li>
-                    <li style="font-size: 15px;">A grey checked box indicates an inherited permission from a parent file.</li>
+            <div id="flexcontainer" style="display:flex; flex-direction: row; border: 1px solid grey;border-radius:5px;width:93%;margin:auto; padding: 10px">
+                <ul style="width:50%; font-size: 20px; margin-left:25px; margin-right:25px;"><h2>Instructions:</h2>
+                    <li style="font-size: 17px;padding:3px">Read, write, and modify permissions can be found or editted by clicking the unlock button next to each file or folder.</li>
+                    <li style="font-size: 17px;padding:3px">To edit any other permissions for a user, such as delete or create files, click the following steps: Permissions button for the file whose permissions you are editting --> Advanced Permissions--> Edit Advanced Permissions --> Select User.</li>
+                    <li style="font-size: 17px;padding:3px">A grey checked box indicates an inherited permission from a parent file.</li>
                 </ul>
                 <br>
-                <ol style="font-size: 20px;"><h2>Order of Permission Precedance</h2>
-                    <li style="font-size: 15px;">Direct permission to file or to a group the user is a part of</li>
-                    <li style="font-size: 15px;">Permission of parent folder, if inheritance is turned on, </li>
-                    <li style="font-size: 15px;">Permission of grandparent folder, etc.</li>
-                    <li style="font-size: 15px;">If the permission is not set directly, set in any ancestors or inheritance is off, it will default to deny</li>
+                <ol style="font-size:20px; margin-left:25px;margin-right:25px;"><h2>Order of Permission Precedance</h2>
+                    <li style="font-size:17px;padding:3px">Direct permission to file or to a group the user is a part of</li>
+                    <li style="font-size:17px;padding:3px">Permission of parent folder, if inheritance is turned on, </li>
+                    <li style="font-size:17px;padding:3px">Permission of grandparent folder, etc.</li>
+                    <li style="font-size:17px;padding:3px">If the permission is not set directly, set in any ancestors or inheritance is off, it will default to deny</li>
                 </ol>  
             </div>
+            <br>
             <div data-app="gender-mag" data-mode="tracker" id="html-loc" data-tag="">
                 <!-- div where file and folder structure will be generated:-->
-                <div id="filestructure"></div>
+                <div id="filestructure" style="margin-left:40px;margin-top:20px;"></div>
                 <!-- structure for Permission Entry dialog: -->
 
                 <div title="Permission Entry" id="permentry">
