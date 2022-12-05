@@ -1,6 +1,12 @@
 //---- Define your dialogs  and panels here ----
 //testing
+const modal = document.querySelector(".modal");
+const trigger = document.querySelector(".trigger");
+const closeButton = document.querySelector(".close-button");
 
+function toggleModal() {
+    modal.classList.toggle("show-modal");
+}
 var thing = define_new_effective_permissions("permissionspanel", true, null)
 
 var userthing = define_new_user_select_field("adduser", "Select User", function(selected_user){$('#permissionspanel').attr('username', selected_user)})
@@ -8,7 +14,19 @@ var userthing = define_new_user_select_field("adduser", "Select User", function(
 var infodialog = define_new_dialog(infodialog, 'Information permissions', {})
 // ---- Display file structure ----
 
-// $('#sidepanel').append(thing);
+//$('#sidepanel').append(validate_and_get_logs());
+// $('.ui-button ui-widget ui-corner-all').click(function(){
+//     $('#sidepanel').append(validate_and_get_logs())
+//     console.log("tesing");
+    
+// })
+
+function reloadPage(){
+    window.location.reload();
+}
+$('#sidepanel').append("<button type='submit' style='font-size: 30px; cursor: pointer; shadow: 1; color: white; border-color: red; background-color: red' onClick='reloadPage()'>REVERT CHANGES </button>")
+
+
 // $('#sidepanel').append(userthing);
 
 $('#permissionspanel').attr('filepath', '/C')

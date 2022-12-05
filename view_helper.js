@@ -23,8 +23,6 @@ function define_attribute_observer(watched_elem_selector, watched_attribute, on_
     attribute_observer.observe(watched_element, {attributes: true})
 
 }
-
-
 // --- Helper functions to create transient elements and data structures.
 // --- These elements will be created and destroyed as needed (often when the data being displayed changes).
 
