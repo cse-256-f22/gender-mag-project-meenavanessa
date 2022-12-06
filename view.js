@@ -24,7 +24,13 @@ var infodialog = define_new_dialog(infodialog, 'Information permissions', {})
 function reloadPage(){
     window.location.reload();
 }
-$('#sidepanel').append("<button type='submit' style='font-size: 30px; cursor: pointer; shadow: 1; color: white; border-color: red; background-color: red' onClick='reloadPage()'>REVERT CHANGES </button>")
+
+// function buttonHover(){
+//     document.getElementById('reloadbutton').style.fontSize = "30px";
+//     console.log("here")
+
+// }
+$('#sidepanel').append("<button type='submit' id='reloadbutton' style='font-size: 20px; cursor: pointer; shadow: 1; color: white; border-color: red; background-color: red' onClick='reloadPage()'>REVERT CHANGES </button>")
 
 
 // $('#sidepanel').append(userthing);
