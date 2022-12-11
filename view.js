@@ -7,33 +7,25 @@ const closeButton = document.querySelector(".close-button");
 function toggleModal() {
     modal.classList.toggle("show-modal");
 }
+
 var thing = define_new_effective_permissions("permissionspanel", true, null)
-
 var userthing = define_new_user_select_field("adduser", "Select User", function(selected_user){$('#permissionspanel').attr('username', selected_user)})
-
 var infodialog = define_new_dialog(infodialog, 'Information permissions', {})
 // ---- Display file structure ----
 
-//$('#sidepanel').append(validate_and_get_logs());
-// $('.ui-button ui-widget ui-corner-all').click(function(){
-//     $('#sidepanel').append(validate_and_get_logs())
-//     console.log("tesing");
-    
-// })
+showlogs = define_current_issues();
+$('#sidepanel').append(showlogs);
 
-function reloadPage(){
-    window.location.reload();
-}
+handle = setInterval(function(){
+    $('#sidepanel').innerHTML = ''
+    logs = parse_logs()
+    document.getElementById("issue").innerHTML=logs[0];
+    if(logs[1]){
+        clearInterval(handle)
+    }
+        },1000);
 
-// function buttonHover(){
-//     document.getElementById('reloadbutton').style.fontSize = "30px";
-//     console.log("here")
-
-// }
 $('#sidepanel').append("<button type='submit' id='reloadbutton' style='font-size: 20px; cursor: pointer; shadow: 1; color: white; border-color: red; background-color: red' onClick='reloadPage()'>REVERT CHANGES </button>")
-
-
-// $('#sidepanel').append(userthing);
 
 $('#permissionspanel').attr('filepath', '/C')
 $('.perm_info').click(function(){
@@ -46,8 +38,6 @@ $('.perm_info').click(function(){
     let exp_string = get_explanation_text(explanation)
     infodialog.text(exp_string)
 })
-
-
 
 // (recursively) makes and returns an html element (wrapped in a jquery object) for a given file object
 function make_file_element(file_obj) {
@@ -120,4 +110,4 @@ $('.permbutton').click( function( e ) {
 
 
 // ---- Assign unique ids to everything that doesn't have an ID ----
-$('#html-loc').find('*').uniqueId() 
+$('#html-loc').find('*').uniqueId()

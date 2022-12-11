@@ -96,6 +96,10 @@ function define_new_dialog(id_prefix, title='', options = {}){
     return dialog
 }
 
+function define_current_issues() {
+    let contain = $('<div class="issues">Check your solution:</div> <div id=issue></div>')
+    return contain
+}
 // Define a generic list which allows you to select one of the items, and propagates that item's 'name' attribute to its own 'selected_item' attribute.
 // Note: each selectable item in the list is expted to have a 'name' attribute.
 // creates and returns a custom jquery-ui selectable (https://jqueryui.com/selectable/).

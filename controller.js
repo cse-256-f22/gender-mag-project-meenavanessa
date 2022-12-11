@@ -441,3 +441,106 @@ function validate_and_get_logs() {
         console.log(JSON.stringify(userData));
     }
 }
+
+function validate_and_show_logs() {
+    let scenario = $('#scenario_context').data('tag');
+    let scenario_solution_state = new Set(
+        correct_scenario_solutions[scenario].split(';')
+    );
+    let current_state = new Set(get_allowed_actions_string().split(';'));
+
+    let missing_allowed = [];
+    for (let correct_allowed of scenario_solution_state) {
+        if (!current_state.has(correct_allowed)) {
+            missing_allowed.push(correct_allowed);
+        }
+    }
+
+    let should_not_be_allowed = [];
+    for (let current_allowed of current_state) {
+        if (!scenario_solution_state.has(current_allowed)) {
+            should_not_be_allowed.push(current_allowed);
+        }
+    }
+
+    allowed_but_should_be_denied = []
+    denied_but_should_be_allowed = []
+
+    console.log(missing_allowed, should_not_be_allowed);
+    if (missing_allowed.length > 0 || should_not_be_allowed.length > 0) {
+        console.error(
+            'ERROR: Your current permissions state does not match the correct solution; In particular:'
+        );
+        if (should_not_be_allowed.length > 0) {
+            console.warn(
+                'The following permissions are currently allowed, but should be denied in a correct solution:'
+            );
+            for (let p of should_not_be_allowed) {
+                let ids = p.split(':');
+                let filepath = id_to_filepath[parseInt(ids[0])];
+                let username = id_to_username[parseInt(ids[1])];
+                let perm = id_to_permission[parseInt(ids[2])];
+
+                allowed_but_should_be_denied.push(`<p><i>${username}</i> : ${perm}, ${filepath}</p>`)
+
+                console.log('\t', username, ': ', perm, filepath);
+            }
+        }
+        if (missing_allowed.length > 0) {
+            console.warn(
+                'The following permissions are currently denied, but should be allowed in a correct solution:'
+            );
+            for (let p of missing_allowed) {
+                let ids = p.split(':');
+                let filepath = id_to_filepath[parseInt(ids[0])];
+                let username = id_to_username[parseInt(ids[1])];
+                let perm = id_to_permission[parseInt(ids[2])];
+
+                denied_but_should_be_allowed.push(`<p><i>${username}</i> : ${perm}, ${filepath}</p>`)
+
+                console.log('\t', username, ': ', perm, filepath);
+            }
+        }
+
+        console.error(
+            'ERROR: Your current permissions state does not match the correct solution; see above for list of problems.'
+        );
+    } else {
+        console.log(JSON.stringify(userData));
+    }
+
+    return [allowed_but_should_be_denied, denied_but_should_be_allowed]
+}
+
+
+function parse_logs(){
+    $('#sidepanel').innerHTML = ''
+    logs = validate_and_show_logs()
+    console.log(logs)
+    allowed = logs[0]
+    denied = logs[1]
+
+    success = false;
+    explanation = ``
+    if(allowed.length === 0 & denied.length === 0){
+        explanation += `<p><b>Your solution is correct!</b></p>`
+        success = true;
+    }
+    else {
+        explanation += `<p><b>Your current solution is incorrect. See below:</b></p>`
+        if(allowed.length > 0){
+            explanation += `<p>The following permissions are currently allowed, but should be denied:</p>`
+            for(const element of allowed){
+                explanation += element
+            }
+        }
+        if(denied.length > 0){
+            explanation += `<p>The following permissions are currently denied, but should be allowed:</p>`
+            for(const element of denied){
+                explanation += element
+            }
+        }
+    }
+
+    return [explanation, success]
+}
