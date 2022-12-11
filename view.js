@@ -12,6 +12,7 @@ var thing = define_new_effective_permissions("permissionspanel", true, null)
 var userthing = define_new_user_select_field("adduser", "Select User", function(selected_user){$('#permissionspanel').attr('username', selected_user)})
 var infodialog = define_new_dialog(infodialog, 'Information permissions', {})
 // ---- Display file structure ----
+$('#sidepanel').append("<button type='submit' id='reloadbutton' style='font-size: 20px; cursor: pointer; shadow: 1; color: white; border-color: red; background-color: red' onClick='reloadPage()'>Start Over </button>")
 
 showlogs = define_current_issues();
 $('#sidepanel').append(showlogs);
@@ -25,7 +26,6 @@ handle = setInterval(function(){
     }
         },1000);
 
-$('#sidepanel').append("<button type='submit' id='reloadbutton' style='font-size: 20px; cursor: pointer; shadow: 1; color: white; border-color: red; background-color: red' onClick='reloadPage()'>REVERT CHANGES </button>")
 
 $('#permissionspanel').attr('filepath', '/C')
 $('.perm_info').click(function(){
