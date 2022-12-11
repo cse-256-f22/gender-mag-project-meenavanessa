@@ -97,7 +97,7 @@ function define_new_dialog(id_prefix, title='', options = {}){
 }
 
 function define_current_issues() {
-    let contain = $('<div class="issues">Check your solution:</div> <div id=issue></div>')
+    let contain = $('<div class="issues" style="font-size: 25px; font-weight: 200;"><strong>Check your solution:</strong></div> <div id=issue></div>')
     return contain
 }
 // Define a generic list which allows you to select one of the items, and propagates that item's 'name' attribute to its own 'selected_item' attribute.

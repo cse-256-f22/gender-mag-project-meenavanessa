@@ -514,7 +514,6 @@ function validate_and_show_logs() {
 
 
 function parse_logs(){
-    $('#sidepanel').innerHTML = ''
     logs = validate_and_show_logs()
     console.log(logs)
     allowed = logs[0]
@@ -523,19 +522,19 @@ function parse_logs(){
     success = false;
     explanation = ``
     if(allowed.length === 0 & denied.length === 0){
-        explanation += `<p><b>Your solution is correct!</b></p>`
+        explanation += `<p><b>You identified the right solution</b></p>`
         success = true;
     }
     else {
-        explanation += `<p><b>Your current solution is incorrect. See below:</b></p>`
+        explanation += `<p><b>You have the wrong solution:</b></p>`
         if(allowed.length > 0){
-            explanation += `<p>The following permissions are currently allowed, but should be denied:</p>`
+            explanation += `</br><p><b>These permissions are currently allowed, but must be denied to be correct:</b></p>`
             for(const element of allowed){
                 explanation += element
             }
         }
         if(denied.length > 0){
-            explanation += `<p>The following permissions are currently denied, but should be allowed:</p>`
+            explanation += `</br><p>These permissions are currently denied, but must be allowed to be correct:</p>`
             for(const element of denied){
                 explanation += element
             }
